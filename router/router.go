@@ -9,12 +9,9 @@ func SetupRouter() *gin.Engine {
 	router := gin.Default()
 	router.LoadHTMLGlob("app/view/*")
 
-	webv1 := router.Group("/web/v1")
+	shortener := router.Group("/shortener")
 	{
-		authRouting := webv1.Group("/auth")
-		{
-			authRouting.GET("", webv1shortener.PageStateShortener)
-		}
+		shortener.GET("", webv1shortener.PageStateShortener)
 	}
 
 	return router
