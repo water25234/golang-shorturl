@@ -19,9 +19,9 @@ func SetupRouter() *gin.Engine {
 	// api
 	v1 := router.Group("/api/v1")
 	{
-		authRouting := v1.Group("/auth")
+		authRouting := v1.Group("/shortener")
 		{
-			authRouting.POST("/:uid", apiv1shortener.SaveShortenerUrl)
+			authRouting.POST("/save", apiv1shortener.SaveShortenerURL)
 		}
 	}
 

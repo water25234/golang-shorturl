@@ -12,7 +12,7 @@ var tx *sql.Tx
 var succ sql.Result
 
 type Shortener struct {
-	ShortenerID int    `json:"shortener_id"`
+	ShortenerID int64  `json:"shortener_id"`
 	CreateDate  string `json:"create_date"`
 	ModifyDate  string `json:"modify_date"`
 	URLEncode   string `json:"url_encode"`
@@ -20,10 +20,21 @@ type Shortener struct {
 	IsClose     bool   `json:"is_close"`
 }
 
-func SaveShortenerUrl(args ...interface{}) (*Shortener, error) {
+func GetLastShortenerID() (*Shortener, error) {
 
 	var shortener Shortener
-	err = server.DB.QueryRow("SELECT * FROM shortener WHERE url_encode = $1;", args).Scan(
+	err = server.DB.QueryRow("SELECT shortener_id FROM shortener ORDER BY shortener_id DESC LIMIT 1;").Scan(
+		&shortener.ShortenerID)
+	if err != nil {
+		shortener.ShortenerID = 0
+	}
+	return &shortener, err
+}
+
+func SaveShortenerUrl(URLEncode string, URL string) (*Shortener, error) {
+
+	var shortener Shortener
+	err = server.DB.QueryRow("SELECT * FROM shortener WHERE url_encode = $1;", URLEncode).Scan(
 		&shortener.ShortenerID,
 		&shortener.CreateDate,
 		&shortener.ModifyDate,
@@ -41,12 +52,12 @@ func SaveShortenerUrl(args ...interface{}) (*Shortener, error) {
 	}
 
 	sql := "INSERT INTO shortener (create_date, modify_date, url_encode, url, is_close) VALUES (now(), now(), $1, $2, false);"
-	succ, err = server.DB.Exec(sql, "coconut", 300)
+	_, err = server.DB.Exec(sql, URLEncode, URL)
 	if err != nil {
 		panic(err)
 	}
 
-	err = server.DB.QueryRow("SELECT * FROM shortener WHERE shortener_id = $1;", succ.LastInsertId).Scan(
+	err = server.DB.QueryRow("SELECT * FROM shortener WHERE url_encode = $1;", URLEncode).Scan(
 		&shortener.ShortenerID,
 		&shortener.CreateDate,
 		&shortener.ModifyDate,

@@ -1,31 +1,27 @@
 package apiv1shortener
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 	"github.com/water25234/golang-shorturl/app/controller"
+	servershortener "github.com/water25234/golang-shorturl/app/server/shortener"
 )
 
 type SaveShortenerForm struct {
 	Url string `form:url binding:"required"`
 }
 
-func SaveShortenerUrl(ctx *gin.Context) {
+func SaveShortenerURL(ctx *gin.Context) {
 	saveShortenerForm := &SaveShortenerForm{}
-	if ctx.BindJSON(&saveShortenerForm) == nil {
-		ctx.JSON(http.StatusUnauthorized, controller.GetSuccessResponse("failure"))
-	}
 
-	fmt.Println(saveShortenerForm.Url)
+	ctx.BindJSON(&saveShortenerForm)
 
 	if saveShortenerForm.Url == "" {
 		ctx.JSON(http.StatusUnauthorized, controller.GetSuccessResponse("failure"))
 	}
 
-	ctx.JSON(http.StatusOK, controller.GetSuccessResponse(gin.H{
-		"ThrottleCount": 1,
-		"userId":        1,
-	}))
+	response := servershortener.SaveShortenerURL(saveShortenerForm.Url)
+
+	ctx.JSON(http.StatusOK, controller.GetSuccessResponse(response))
 }
