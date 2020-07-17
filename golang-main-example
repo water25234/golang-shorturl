@@ -79,3 +79,46 @@ CREATE TABLE public.shortener
 )
 
 TABLESPACE pg_default;
+
+
+
+type LoginForm struct {
+	User     string `form:"user" binding:"required"`
+	Password string `form:"password" binding:"required"`
+}
+
+func PostAuth(ctx *gin.Context) {
+	form := &LoginForm{}
+	if ctx.BindJSON(&form) == nil {
+
+		fmt.Println(form.User, form.Password)
+		if form.User == "user" && form.Password == "password" {
+			ctx.JSON(200, gin.H{"status": "you are logged in"})
+		} else {
+			ctx.JSON(401, gin.H{"status": "unauthorized"})
+		}
+
+	}
+
+	ctx.JSON(http.StatusOK, controller.GetSuccessResponse(gin.H{
+		"ThrottleCount": 1,
+		"userId":        1,
+	}))
+}
+
+
+
+	var shortener Shortener
+	err := server.DB.QueryRow("SELECT * FROM inventory;").Scan(
+		&shortener.ShortenerID,
+		&shortener.CreateDate,
+		&shortener.ModifyDate,
+		&shortener.URLEncode,
+		&shortener.URL,
+		&shortener.IsClose)
+
+	if err != nil {
+		panic(err)
+	}
+
+	return &shortener, err
