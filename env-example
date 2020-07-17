@@ -1,0 +1,12 @@
+APP_LOG_PATH=./logs/golang/golang-postgres.log
+
+REDIS_HOST=redis
+REDIS_PORT=6379
+REDIS_DB=1
+
+DB_CONNECTION=postgres
+DB_HOST=postgres
+DB_PORT=5432
+DB_DATABASE=golangdb
+DB_USERNAME=golang
+DB_PASSWORD=golang

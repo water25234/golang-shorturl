@@ -1,0 +1,80 @@
+package main
+
+import (
+	"log"
+	"net/http"
+)
+
+func redirect(w http.ResponseWriter, r *http.Request) {
+
+	http.Redirect(w, r, "http://www.google.com", 302)
+}
+
+func exmaple() {
+	http.HandleFunc("/", redirect)
+	err := http.ListenAndServe(":8080", nil)
+	if err != nil {
+		log.Fatal("ListenAndServe: ", err)
+	}
+}
+
+func main() {
+
+	// exmaple()
+	// result := sum(1, 2)
+	// fmt.Println(result)
+}
+
+// i, j := 99, 99
+// setWithPointer(&i)
+// setWithValue(i)
+// fmt.Println(i, j)
+
+func setWithPointer(i *int) {
+	*i = 100
+}
+
+func setWithValue(i int) {
+	i = 100
+}
+
+func sum(x, y int) (res int) {
+	res = x + y
+	return
+}
+
+// ch := make(chan int)
+// fmt.Println(ch)
+// ch <- 10
+// fmt.Println(ch)
+// i := <-ch
+// fmt.Println(i)
+// fmt.Println("ok")
+
+// ch := make(chan int)
+// go func() {
+// 	time.Sleep(1 * time.Second)
+// 	ch <- 10
+// }()
+// i := <-ch
+// fmt.Println(i)
+
+
+
+CREATE SEQUENCE public.shortener_id_sql
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 2147483647
+    CACHE 1;
+
+CREATE TABLE public.shortener
+(
+    shortener_id integer NOT NULL DEFAULT nextval('shortener_id_sql'::regclass),
+    url text ,
+    url_encode character varying(62), 
+    is_close boolean NOT NULL DEFAULT false, 
+    CONSTRAINT shortener_pkey PRIMARY KEY (shortener_id)
+)
+
+TABLESPACE pg_default;
