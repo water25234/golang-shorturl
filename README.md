@@ -1,6 +1,11 @@
 # golang-shorturl
 
-## Table Schema
+## Prerequisite
+- GO v1.14
+- Redis
+- postgres
+
+## Create Postgresql Table Schema
 
 ```
 CREATE SEQUENCE public.shortener_id_sql
@@ -25,3 +30,6 @@ CREATE INDEX index_shortener_url_encode
 ON shortener(url_encode);
 
 ```
+
+## Build the project
+- docker-compose up -d

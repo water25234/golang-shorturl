@@ -60,6 +60,7 @@ func sum(x, y int) (res int) {
 // fmt.Println(i)
 
 
+-- Table Schema
 
 CREATE SEQUENCE public.shortener_id_sql
     INCREMENT 1
