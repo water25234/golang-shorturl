@@ -20,6 +20,16 @@ type Shortener struct {
 	IsClose     bool   `json:"is_close"`
 }
 
+func GetShortenerID(URLEncode string) (*Shortener, error) {
+	var shortener Shortener
+	err = server.DB.QueryRow("SELECT url_encode FROM shortener Where url_encode = $1;", URLEncode).Scan(
+		&shortener.URLEncode)
+	if err != nil {
+		panic(err)
+	}
+	return &shortener, err
+}
+
 func GetLastShortenerID() (*Shortener, error) {
 
 	var shortener Shortener

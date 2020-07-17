@@ -14,14 +14,16 @@ func SetupRouter() *gin.Engine {
 	shortener := router.Group("/shortener")
 	{
 		shortener.GET("", webv1shortener.PageStateShortener)
+		shortener.GET("/:shortenerID", apiv1shortener.GetShortenerURL)
 	}
 
 	// api
 	v1 := router.Group("/api/v1")
 	{
-		authRouting := v1.Group("/shortener")
+		shortenerRouting := v1.Group("/shortener")
 		{
-			authRouting.POST("/save", apiv1shortener.SaveShortenerURL)
+			shortenerRouting.GET("/:shortenerID", apiv1shortener.GetShortenerURL)
+			shortenerRouting.POST("", apiv1shortener.SaveShortenerURL)
 		}
 	}
 

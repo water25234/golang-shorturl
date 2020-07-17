@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	modelshortener "github.com/water25234/golang-shorturl/app/model/shortener"
+	"github.com/water25234/golang-shorturl/server"
 )
 
 const (
@@ -42,6 +43,27 @@ func SaveShortenerURL(Url string) interface{} {
 	fmt.Println(saveShortenerURL)
 
 	return saveShortenerURL
+}
+
+func GetShortenerURL(URLEncode string) string {
+
+	key := "ShortenerURL:" + URLEncode
+	value := server.GetRedis(key)
+	if value != "" {
+		return value
+	}
+
+	getShortenerID, err := modelshortener.GetShortenerID(URLEncode)
+	if err != nil {
+		panic(err)
+	}
+
+	decaysecond := 900
+	value = getShortenerID.URLEncode
+	fmt.Println(value)
+	server.SetRedis(key, value, decaysecond)
+
+	return value
 }
 
 func Encode(n int64) string {

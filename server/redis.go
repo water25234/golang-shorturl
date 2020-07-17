@@ -36,7 +36,7 @@ func SetRedis(key string, value string, num int) {
 func GetRedis(key string) string {
 	val, err := client.Get(key).Result()
 	if err != nil {
-		panic(err)
+		return ""
 	}
 	return val
 }
@@ -44,7 +44,7 @@ func GetRedis(key string) string {
 func GetKeys(key string) []string {
 	val, err := client.Keys(key).Result()
 	if err != nil {
-		panic(err)
+		return val
 	}
 	return val
 }

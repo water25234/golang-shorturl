@@ -25,3 +25,11 @@ func SaveShortenerURL(ctx *gin.Context) {
 
 	ctx.JSON(http.StatusOK, controller.GetSuccessResponse(response))
 }
+
+func GetShortenerURL(ctx *gin.Context) {
+	shortenerID := ctx.Param("shortenerID")
+
+	shortenerID = servershortener.GetShortenerURL(shortenerID)
+
+	ctx.JSON(http.StatusOK, controller.GetSuccessResponse(gin.H{"shortenerID": shortenerID}))
+}

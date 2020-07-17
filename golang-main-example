@@ -192,3 +192,19 @@ func main() {
 	fmt.Println(value)
 
 	succ.LastInsertId
+
+
+{
+    "data": {
+        "shortener_id": 5,
+        "create_date": "2020-07-17T15:24:43.213446Z",
+        "modify_date": "2020-07-17T15:24:43.213446Z",
+        "url_encode": "WN",
+        "url": "https://www.kkday.com/zh-tw",
+        "is_close": false
+    },
+    "metadata": {
+        "desc": "success",
+        "status": "0000"
+    }
+}
