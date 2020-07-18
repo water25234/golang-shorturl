@@ -1,7 +1,9 @@
 # golang-shorturl
+- 縮短網址專案
 
 ## Prerequisite
 - GO v1.14
+- Go Gin v1.5.0
 - Redis
 - postgres
 
@@ -24,7 +26,7 @@ CREATE TABLE public.shortener
     url character varying ,
     is_close boolean NOT NULL DEFAULT false, 
     CONSTRAINT shortener_pkey PRIMARY KEY (shortener_id)
-)
+);
 
 CREATE INDEX index_shortener_url_encode
 ON shortener(url_encode);
@@ -36,3 +38,9 @@ ADD CONSTRAINT shortener_url_encode_unique UNIQUE (url_encode);
 
 ## Build the project
 - docker-compose up -d
+
+
+## Browers Work
+- http://localhost:8080/shortener
+
+![image](https://imgur.com/a/IiXgh6F)
