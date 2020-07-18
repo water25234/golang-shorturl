@@ -43,4 +43,4 @@ ADD CONSTRAINT shortener_url_encode_unique UNIQUE (url_encode);
 ## Browers Work
 - http://localhost:8080/shortener
 
-![image](https://imgur.com/a/IiXgh6F)
+![image](https://github.com/water25234/golang-shorturl/blob/master/asset/img/Screen%20Shot%202020-07-18%20at%203.22.27%20PM.png)
