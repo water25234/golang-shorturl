@@ -22,8 +22,9 @@ type Shortener struct {
 
 func GetShortenerID(URLEncode string) (*Shortener, error) {
 	var shortener Shortener
-	err = server.DB.QueryRow("SELECT url_encode FROM shortener Where url_encode = $1;", URLEncode).Scan(
-		&shortener.URLEncode)
+	err = server.DB.QueryRow("SELECT url_encode, url FROM shortener Where url_encode = $1;", URLEncode).Scan(
+		&shortener.URLEncode,
+		&shortener.URL)
 	if err != nil {
 		panic(err)
 	}

@@ -18,7 +18,7 @@ func SaveShortenerURL(ctx *gin.Context) {
 	ctx.BindJSON(&saveShortenerForm)
 
 	if saveShortenerForm.Url == "" {
-		ctx.JSON(http.StatusUnauthorized, controller.GetSuccessResponse("failure"))
+		ctx.JSON(http.StatusUnauthorized, controller.GetSuccessResponse("request parameter is failure"))
 	}
 
 	response := servershortener.SaveShortenerURL(saveShortenerForm.Url)
@@ -29,7 +29,11 @@ func SaveShortenerURL(ctx *gin.Context) {
 func GetShortenerURL(ctx *gin.Context) {
 	shortenerID := ctx.Param("shortenerID")
 
-	shortenerID = servershortener.GetShortenerURL(shortenerID)
+	if shortenerID == "" {
+		ctx.JSON(http.StatusUnauthorized, controller.GetSuccessResponse("request parameter is failure"))
+	}
 
-	ctx.JSON(http.StatusOK, controller.GetSuccessResponse(gin.H{"shortenerID": shortenerID}))
+	shortenerURL := servershortener.GetShortenerURL(shortenerID)
+
+	ctx.JSON(http.StatusOK, controller.GetSuccessResponse(gin.H{"shortenerURL": shortenerURL}))
 }

@@ -14,7 +14,7 @@ func SetupRouter() *gin.Engine {
 	shortener := router.Group("/shortener")
 	{
 		shortener.GET("", webv1shortener.PageStateShortener)
-		shortener.GET("/:shortenerID", apiv1shortener.GetShortenerURL)
+		shortener.GET("/:shortenerID", webv1shortener.GetShortenerURL)
 	}
 
 	// api

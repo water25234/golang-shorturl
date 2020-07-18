@@ -17,10 +17,14 @@ func PageStateShortener(ctx *gin.Context) {
 		}))
 }
 
-func GetShortenerURL(ctx *gin.Context, w http.ResponseWriter, r *http.Request) {
+func GetShortenerURL(ctx *gin.Context) {
 	shortenerID := ctx.Param("shortenerID")
 
-	shortenerID = servershortener.GetShortenerURL(shortenerID)
+	if shortenerID == "" {
+		ctx.JSON(http.StatusUnauthorized, controller.GetSuccessResponse("request parameter is failure"))
+	}
 
-	http.Redirect(w, r, "http://127.0.0.1:8080/shortener/"+shortenerID, 302)
+	shortenerURL := servershortener.GetShortenerURL(shortenerID)
+
+	ctx.Redirect(http.StatusFound, shortenerURL)
 }

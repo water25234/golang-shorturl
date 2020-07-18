@@ -28,8 +28,6 @@ func SaveShortenerURL(Url string) interface{} {
 
 	shortenerEncodeNum := Encode(num)
 
-	fmt.Println(shortenerEncodeNum)
-
 	if Url == "" {
 		panic("SaveShortenerURL : url is null")
 	}
@@ -39,8 +37,6 @@ func SaveShortenerURL(Url string) interface{} {
 	if err != nil {
 		panic(err)
 	}
-
-	fmt.Println(saveShortenerURL)
 
 	return saveShortenerURL
 }
@@ -59,8 +55,7 @@ func GetShortenerURL(URLEncode string) string {
 	}
 
 	decaysecond := 900
-	value = getShortenerID.URLEncode
-	fmt.Println(value)
+	value = getShortenerID.URL
 	server.SetRedis(key, value, decaysecond)
 
 	return value
