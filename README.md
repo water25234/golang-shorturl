@@ -44,3 +44,51 @@ ADD CONSTRAINT shortener_url_encode_unique UNIQUE (url_encode);
 - http://localhost:8080/shortener
 
 ![image](https://github.com/water25234/golang-shorturl/blob/master/asset/img/Screen%20Shot%202020-07-18%20at%203.22.27%20PM.png)
+
+
+## RESTful API
+- Create Shortener Url API
+```
+Request
+
+curl --location --request POST 'http://127.0.0.1:8080/api/v1/shortener' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+        "url": "https://www.kkday.com/zh-tw"
+    }'
+
+Response
+
+{
+    "data": {
+        "shortener_id": 27,
+        "create_date": "2020-07-18T05:46:04.666439Z",
+        "modify_date": "2020-07-18T05:46:04.666439Z",
+        "url_encode": "WO",
+        "url": "https://www.kkday.com/zh-tw",
+        "is_close": false
+    },
+    "metadata": {
+        "desc": "success",
+        "status": "0000"
+    }
+}
+```
+- Get Shortener Url APO
+```
+Request
+
+curl --location --request GET 'http://127.0.0.1:8080/api/v1/shortener/W6'
+
+Response
+
+{
+    "data": {
+        "shortenerURL": "https://www.kkday.com/zh-tw"
+    },
+    "metadata": {
+        "desc": "success",
+        "status": "0000"
+    }
+}
+```
