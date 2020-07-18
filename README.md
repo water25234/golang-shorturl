@@ -74,7 +74,7 @@ Response
     }
 }
 ```
-- Get Shortener Url APO
+- Get Shortener Url API
 ```
 Request
 
