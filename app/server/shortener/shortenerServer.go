@@ -20,6 +20,10 @@ type ShortenerEncode struct {
 
 func SaveShortenerURL(Url string) interface{} {
 
+	if Url == "" {
+		panic("SaveShortenerURL : url is null")
+	}
+
 	var num int64
 
 	getLastShortenerID, err := modelshortener.GetLastShortenerID()
@@ -27,10 +31,6 @@ func SaveShortenerURL(Url string) interface{} {
 	num = getLastShortenerID.ShortenerID + 1000000001
 
 	shortenerEncodeNum := Encode(num)
-
-	if Url == "" {
-		panic("SaveShortenerURL : url is null")
-	}
 
 	saveShortenerURL, err := modelshortener.SaveShortenerUrl(shortenerEncodeNum, Url)
 
