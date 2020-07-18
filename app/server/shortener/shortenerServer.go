@@ -24,7 +24,7 @@ func SaveShortenerURL(Url string) interface{} {
 
 	getLastShortenerID, err := modelshortener.GetLastShortenerID()
 
-	num = getLastShortenerID.ShortenerID + 1000
+	num = getLastShortenerID.ShortenerID + 1000000000
 
 	shortenerEncodeNum := Encode(num)
 
