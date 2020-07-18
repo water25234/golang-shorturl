@@ -1,6 +1,7 @@
 package apiv1shortener
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -9,13 +10,16 @@ import (
 )
 
 type SaveShortenerForm struct {
-	Url string `form:url binding:"required"`
+	Url string `json:"url" form:"url"`
 }
 
 func SaveShortenerURL(ctx *gin.Context) {
+
+	fmt.Println(ctx.PostForm("url"))
+
 	saveShortenerForm := &SaveShortenerForm{}
 
-	ctx.BindJSON(&saveShortenerForm)
+	ctx.Bind(&saveShortenerForm)
 
 	if saveShortenerForm.Url == "" {
 		ctx.JSON(http.StatusUnauthorized, controller.GetSuccessResponse("request parameter is failure"))
@@ -24,6 +28,8 @@ func SaveShortenerURL(ctx *gin.Context) {
 	response := servershortener.SaveShortenerURL(saveShortenerForm.Url)
 
 	ctx.JSON(http.StatusOK, controller.GetSuccessResponse(response))
+	ctx.Abort()
+	return
 }
 
 func GetShortenerURL(ctx *gin.Context) {

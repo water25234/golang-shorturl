@@ -27,4 +27,6 @@ func GetShortenerURL(ctx *gin.Context) {
 	shortenerURL := servershortener.GetShortenerURL(shortenerID)
 
 	ctx.Redirect(http.StatusFound, shortenerURL)
+	ctx.Abort()
+	return
 }

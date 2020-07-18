@@ -9,6 +9,7 @@ import (
 func SetupRouter() *gin.Engine {
 	router := gin.Default()
 	router.LoadHTMLGlob("app/view/*")
+	router.Static("/assetPath", "./asset")
 
 	// web
 	shortener := router.Group("/shortener")
