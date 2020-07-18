@@ -17,9 +17,9 @@
                     <div class="col-md-12 mb-3">
                         <button type="button" class="btn btn-lg btn-block btn-primary" onClick="saveShortenerURL()">Get started</button>
                     </div>
-                    <div class="col-md-12 mb-5">
+                    <div class="col-md-12 mb-5" id="isOpenInfo">
                         <div class="form-group">
-                            <label class="text-success">你的縮網址為</label>
+                            <label class="text-success">您的縮網址為</label>
                             <br>
                             <span id="shortenerUrl"></span>
                         </div>
@@ -31,7 +31,14 @@
 </html>
 
 <script>
+    $(function(){
+        $('#isOpenInfo').hide();
+    })
+
     function saveShortenerURL() {
+        $('#isOpenInfo').hide();
+        $('#shortenerUrl').text('');
+
         $.ajax({
                 url: '/api/v1/shortener',
                 type: 'post',
@@ -45,11 +52,12 @@
                     if (data.metadata.desc != 'success') {
                         alert('建立縮短網址失敗');
                     }
-                    let shortenerUrl = 'http://127.0.0.1:8080/shortener/' + data.data.url_encode;
 
+                    let shortenerUrl = 'http://127.0.0.1:8080/shortener/' + data.data.url_encode;
                     let shortenerUrlHtml = '<a href="' + shortenerUrl + '" target="_blank">' + shortenerUrl + '</a>';
 
                     $('#shortenerUrl').append(shortenerUrlHtml);
+                    $('#isOpenInfo').show();
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     alert('建立縮短網址失敗');

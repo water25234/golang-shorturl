@@ -29,6 +29,9 @@ CREATE TABLE public.shortener
 CREATE INDEX index_shortener_url_encode
 ON shortener(url_encode);
 
+ALTER TABLE shortener
+ADD CONSTRAINT shortener_url_encode_unique UNIQUE (url_encode);
+
 ```
 
 ## Build the project

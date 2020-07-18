@@ -1,6 +1,0 @@
-{"level":"info","time":"2020-07-18T00:06:16.316+0800","linenum":"/Users/weishunhuang/golang-shorturl/core/log/logger.go:59","msg":"set redis","serviceName":"serviceName"}
-{"level":"info","time":"2020-07-18T00:07:02.816+0800","linenum":"/Users/weishunhuang/golang-shorturl/core/log/logger.go:59","msg":"set redis","serviceName":"serviceName"}
-{"level":"info","time":"2020-07-18T00:08:42.337+0800","linenum":"/Users/weishunhuang/golang-shorturl/core/log/logger.go:59","msg":"set redis","serviceName":"serviceName"}
-{"level":"info","time":"2020-07-18T10:38:45.443+0800","linenum":"/Users/weishunhuang/golang-shorturl/core/log/logger.go:59","msg":"set redis","serviceName":"serviceName"}
-{"level":"info","time":"2020-07-18T11:02:26.736+0800","linenum":"/Users/weishunhuang/golang-shorturl/core/log/logger.go:59","msg":"set redis","serviceName":"serviceName"}
-{"level":"info","time":"2020-07-18T14:58:18.254+0800","linenum":"/Users/weishunhuang/golang-shorturl/core/log/logger.go:59","msg":"set redis","serviceName":"serviceName"}
