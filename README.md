@@ -37,6 +37,7 @@ ADD CONSTRAINT shortener_url_encode_unique UNIQUE (url_encode);
 ```
 
 ## Build the project
+- cp env-example .env
 - docker-compose up -d
 
 
