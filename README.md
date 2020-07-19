@@ -65,7 +65,7 @@ Response
         "shortener_id": 27,
         "create_date": "2020-07-18T05:46:04.666439Z",
         "modify_date": "2020-07-18T05:46:04.666439Z",
-        "url_encode": "WO",
+        "url_encode": "IVqErQ",
         "url": "https://www.kkday.com/zh-tw",
         "is_close": false
     },
@@ -79,7 +79,7 @@ Response
 ```
 Request
 
-curl --location --request GET 'http://127.0.0.1:8080/api/v1/shortener/W6'
+curl --location --request GET 'http://127.0.0.1:8080/api/v1/shortener/IVqErQ'
 
 Response
 
