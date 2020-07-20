@@ -2,6 +2,7 @@ package servershortener
 
 import (
 	"fmt"
+	"os"
 	"strings"
 
 	modelshortener "github.com/water25234/golang-shorturl/app/model/shortener"
@@ -16,6 +17,7 @@ const (
 type ShortenerEncode struct {
 	URLEncode string `json:"url_encode"`
 	URL       string `json:"url"`
+	FullURL   string `json:"full_url"`
 }
 
 func SaveShortenerURL(Url string) interface{} {
@@ -38,7 +40,13 @@ func SaveShortenerURL(Url string) interface{} {
 		panic(err)
 	}
 
-	return saveShortenerURL
+	shortenerEncode := &ShortenerEncode{
+		URLEncode: saveShortenerURL.URLEncode,
+		URL:       saveShortenerURL.URL,
+		FullURL:   os.Getenv("APP_DOMAIN_NAME") + "api/v1/shortener/" + saveShortenerURL.URLEncode,
+	}
+
+	return shortenerEncode
 }
 
 func GetShortenerURL(URLEncode string) string {

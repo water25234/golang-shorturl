@@ -61,18 +61,15 @@ curl --location --request POST 'http://127.0.0.1:8080/api/v1/shortener' \
 Response
 
 {
-    "data": {
-        "shortener_id": 27,
-        "create_date": "2020-07-18T05:46:04.666439Z",
-        "modify_date": "2020-07-18T05:46:04.666439Z",
-        "url_encode": "IVqErQ",
-        "url": "https://www.kkday.com/zh-tw",
-        "is_close": false
-    },
-    "metadata": {
-        "desc": "success",
-        "status": "0000"
-    }
+   "data":{
+      "url_encode":"lVqELZ",
+      "url":"https://www.cakeresume.com/dashboard",
+      "full_url":"http://127.0.0.1:8080/api/v1/shortener/lVqELZ"
+   },
+   "metadata":{
+      "desc":"success",
+      "status":"0000"
+   }
 }
 ```
 - Get Shortener Url API
