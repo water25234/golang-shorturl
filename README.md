@@ -63,8 +63,8 @@ Response
 {
    "data":{
       "url_encode":"lVqELZ",
-      "url":"https://www.cakeresume.com/dashboard",
-      "full_url":"http://127.0.0.1:8080/api/v1/shortener/lVqELZ"
+      "url":"https://www.kkday.com/zh-tw",
+      "full_url":"http://127.0.0.1:8080/api/v1/shortener/IVqErQ"
    },
    "metadata":{
       "desc":"success",
