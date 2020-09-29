@@ -22,12 +22,13 @@ func SaveShortenerURL(ctx *gin.Context) {
 		ctx.JSON(http.StatusUnauthorized, controller.GetSuccessResponse("request parameter is failure"))
 	}
 
-	ch := make(chan interface{})
-	go func() {
-		ch <- servershortener.SaveShortenerURL(saveShortenerForm.Url)
-	}()
+	// ch := make(chan interface{})
+	// go func() {
+	// 	ch <- servershortener.SaveShortenerURL(saveShortenerForm.Url)
+	// }()
+	// response := <-ch
 
-	response := <-ch
+	response := servershortener.SaveShortenerURL(saveShortenerForm.Url)
 
 	ctx.JSON(http.StatusOK, controller.GetSuccessResponse(response))
 	ctx.Abort()
